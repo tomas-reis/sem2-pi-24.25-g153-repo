@@ -1,0 +1,46 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+'skinparam shadowing false
+
+skinparam rectangle{
+    BorderColor black
+}
+
+
+left to right direction
+
+actor "Human Resources\nManager" as HRM
+actor "Fleet\nManager" as FM
+actor "Green Spaces User" as GSU
+actor "Green Spaces Manager" as GSM
+actor "Collaborator" as C
+
+
+    usecase "UC1 - Register skills that may be appointed to a collaborator" as UC1
+        HRM --> UC1
+
+    usecase "UC2 - Register a job" as UC2
+        HRM --> UC2
+
+    usecase "UC3 - Register a collaborator with a job and fundamental characteristics" as UC3
+        HRM --> UC3
+
+    usecase "UC4 - Assign one or more skills to a collaborator" as UC4
+        HRM --> UC4
+
+    usecase "UC5 - Generate a team proposal automatically" as UC5
+        HRM --> UC5
+
+    usecase "UC6 - Register a vehicle" as UC6
+        FM --> UC6
+
+    usecase "UC7 - Register a vehicle's check-up" as UC7
+        FM --> UC7
+
+    usecase "UC8 - List the vehicles needing the check-up" as UC8
+               FM --> UC8
+
+
+
+@enduml
