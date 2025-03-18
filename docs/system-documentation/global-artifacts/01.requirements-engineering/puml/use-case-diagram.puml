@@ -1,0 +1,48 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+'skinparam shadowing false
+
+'title Use Case Diagram Example
+
+left to right direction
+
+actor Freelancer
+actor "Editor" as Editor
+actor "Player" as Player
+actor "Product Owner" as ProductOwner
+
+
+
+note right of Freelancer
+    Actor identified but still
+    no concrete use cases
+end note
+
+usecase "UC1 - Create a Map" as UC1
+Editor --> UC1
+usecase "UC2 - Add an Industry on Selected Map" as UC2
+Editor --> UC2
+usecase "UC3 - Add a City on Selected Map" as UC3
+Editor --> UC3
+usecase "UC4 - Create Scenario for Selected Map" as UC4
+Editor --> UC4
+usecase "UC5 - Build a Station" as UC5
+Player --> UC5
+usecase "UC6 - Upgrade Selected Station" as UC6
+Player --> UC6
+usecase "UC7 - List All Stations To Select " as UC7
+Player --> UC7
+usecase "UC8 - Build Railway Line Between Two Stations" as UC8
+Player --> UC8
+usecase "UC9 - Buy A train" as UC9
+Player --> UC9
+usecase "UC10 - Assign Selected Train to Route" as UC10
+Player --> UC10
+usecase "UC11 - List All Trains" as UC11
+Player --> UC11
+usecase "UC12 - Create a Simulator " as UC12
+ProductOwner --> UC12
+
+
+@enduml
