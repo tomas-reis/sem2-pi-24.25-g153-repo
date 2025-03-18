@@ -1,0 +1,49 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Product Owner" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : requests to start simulator
+    activate System
+
+        System --> Employee : confirms simulator starting request and lists maps
+    deactivate System
+
+    Employee -> System : selects map
+    activate System
+
+        System --> Employee : confirms map selection and lists scenarios of selected map
+    deactivate System
+
+    Employee -> System : selects scenario
+    activate System
+
+        System --> Employee : confirms scenario selection and starts simulator
+    deactivate System
+
+    Employee -> System : requests to pause simulator
+    activate System
+
+        System --> Employee : confirms simulator pausing
+    deactivate System
+
+    Employee -> System : requests to resume simulator
+    activate System
+
+        System --> Employee : confirms simulator resuming
+    deactivate System
+
+    Employee -> System : requests to stop simulator
+    activate System
+
+        System --> Employee : confirms simulator stopping
+    deactivate System
+
+@enduml
