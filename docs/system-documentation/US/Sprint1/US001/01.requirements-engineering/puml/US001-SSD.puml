@@ -1,0 +1,33 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Editor" as Editor
+participant ":System" as System
+
+activate Editor
+
+Editor -> System : Requests to create a new map
+activate System
+
+System --> Editor : Requests map details (name, width, height)
+deactivate System
+
+Editor -> System : Provides map details
+activate System
+
+System --> System : Validate inputs
+
+alt Valid Inputs
+    System --> Editor : Displays summary and requests confirmation
+    Editor -> System : Confirms map creation
+    System --> Editor : Displays operation success and saves map
+
+else Invalid Inputs
+    System --> Editor : Return an Error and the map is not created
+end
+@enduml
