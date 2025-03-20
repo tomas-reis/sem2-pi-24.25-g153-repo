@@ -1,0 +1,133 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+title Class Diagram - Buy a Train
+
+class ApplicationSession {
+    - ApplicationSession()
+    + {static} getInstance()
+    + getCurrentSession()
+}
+
+class UserSession {
+    + getUserEmail()
+}
+
+class Player {
+    - name : String
+    - budget : double
+    + deductPriceFromBudget(price) : boolean
+}
+
+class Train {
+    - id : int
+    - locomotive : Locomotive
+
+    + Train(id, locomotive)
+}
+
+class Locomotive {
+    - model : String
+    - power : int
+    - acceleration : double
+    - topSpeed : double
+    - startYear : int
+    - price : double
+    - type : enum
+
+    + Locomotive(model, power, acceleration, topSpeed, startYear, price, type)
+}
+
+class Scenario {
+    - name : String
+    - availableLocomotives : List<Locomotive>
+    - currentDate : date
+}
+
+class LocomotiveRepository {
+    + getAvailableLocomotives(scenario)
+    + getLocomotiveByModel(model)
+}
+
+class TrainRepository {
+    + createNewTrain(locomotive)
+    + addTrainToPlayer(player, train)
+}
+
+class PlayerRepository {
+    + getPlayerByEmail(email)
+}
+
+class ScenarioRepository {
+    + getCurrentScenario()
+}
+
+class Repositories {
+    - Repositories()
+    + {static} getInstance()
+    + getLocomotiveRepository()
+    + getScenarioRepository()
+    + getTrainRepository()
+    + getPlayerRepository()
+}
+
+class BuyTrainController {
+    + BuyTrainController()
+    + getAvailableLocomotives()
+    + buyTrain(locomotiveModel)
+    - getLocomotiveByModel(model)
+    - getPlayerFromSession()
+}
+
+note right of BuyTrainController
+    The locomotive is selected
+    from the available list
+end note
+
+note bottom of LocomotiveRepository
+    - Used for retrieving
+    the available locomotives
+end note
+
+class BuyTrainUI {
+}
+
+BuyTrainUI .> BuyTrainController
+
+BuyTrainController ..> ApplicationSession
+BuyTrainController ..> UserSession
+BuyTrainController ..> Locomotive
+BuyTrainController ..> LocomotiveRepository
+BuyTrainController ..> Scenario
+BuyTrainController ..> ScenarioRepository
+BuyTrainController ..> TrainRepository
+BuyTrainController ..> PlayerRepository
+BuyTrainController .> Repositories
+
+Repositories -> "1" Repositories : instance
+Repositories --> "1" ScenarioRepository : scenarioRepository
+Repositories -> "1" LocomotiveRepository : locomotiveRepository
+Repositories -> "1" TrainRepository : trainRepository
+Repositories -> "1" PlayerRepository : playerRepository
+
+ApplicationSession -> "1" ApplicationSession : instance
+ApplicationSession ..> UserSession
+
+LocomotiveRepository --> "*" Locomotive : locomotives
+
+ScenarioRepository --> "1" Scenario : scenario
+
+Scenario --> "*" Locomotive : availableLocomotives
+
+Player --> "*" Train : trains
+Train --> "1" Locomotive : locomotive
+
+@enduml
