@@ -1,0 +1,32 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Player" as Player
+participant ":System" as System
+
+activate Player
+
+Player -> System : Requests to build a station
+activate System
+
+System --> Player : Displays available station types
+deactivate System
+
+Player -> System : Selects station type and location
+activate System
+
+System --> Player : Validates construction rules
+deactivate System
+
+Player -> System : Confirms station construction
+activate System
+
+System --> Player : Displays success message and updates map
+deactivate System
+
+@enduml

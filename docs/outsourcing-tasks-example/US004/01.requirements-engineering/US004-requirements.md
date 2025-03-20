@@ -1,4 +1,4 @@
-# US006 - Create a Task
+# US004 - Create a Scenario
 
 ## 1. Requirements Engineering
 
@@ -16,13 +16,16 @@ As an Editor, I want to create a scenario for a selected map so that the simulat
 
 **From the client clarifications:**
 
-> **Question:** 
+> **Question:** Can a scenario exist without an assigned map?
 >
 > **Answer:** 
 
-> **Question:**
+> **Question:** Can scenarios be edited after creation?
 >
-> **Answer:** 
+> **Answer:**
+> **Question:** What kind of historical events can be added?
+> 
+> **Answer:**
 
 ### 1.3. Acceptance Criteria
 
