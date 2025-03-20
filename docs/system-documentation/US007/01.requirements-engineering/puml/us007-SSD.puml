@@ -1,0 +1,32 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Player" as Player
+participant ":System" as System
+
+activate Player
+
+Player -> System : Requests to list all stations
+activate System
+
+System --> Player : Displays available stations for selection
+deactivate System
+
+Player -> System : Selects a station
+activate System
+
+System --> Player : Ask to choose an option (station details or upgrade station)
+deactivate System
+
+Player -> System : Select station details
+activate System
+
+System --> Player : Displays all details about the selected station, including the existing building and the demand/supply cargoes
+deactivate System
+
+@enduml
