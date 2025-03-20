@@ -1,0 +1,38 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Editor" as Editor
+participant ":System" as System
+
+activate Editor
+
+Editor -> System : Requests to create a new scenario
+activate System
+
+System --> Editor : Displays available maps for selection
+deactivate System
+
+Editor -> System : Selects a map
+activate System
+
+System --> Editor : Requests scenario details (name, time period, restrictions, events)
+deactivate System
+
+Editor -> System : Provides scenario details
+activate System
+
+System --> Editor : Displays summary and requests confirmation
+deactivate System
+
+Editor -> System : Confirms scenario creation
+activate System
+
+System --> Editor : Displays operation success and saves scenario
+deactivate System
+
+@enduml
