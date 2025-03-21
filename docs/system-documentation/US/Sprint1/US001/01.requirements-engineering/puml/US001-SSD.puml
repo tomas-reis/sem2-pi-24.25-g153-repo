@@ -20,14 +20,10 @@ deactivate System
 Editor -> System : Provides map details
 activate System
 
-System --> System : Validate inputs
-
-alt Valid Inputs
     System --> Editor : Displays summary and requests confirmation
+    deactivate System
     Editor -> System : Confirms map creation
+    activate System
     System --> Editor : Displays operation success and saves map
 
-else Invalid Inputs
-    System --> Editor : Return an Error and the map is not created
-end
 @enduml
