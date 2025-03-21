@@ -1,0 +1,88 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+class Map {
+    +String name
+    +int width
+    +int height
+}
+
+class City {
+    +String name
+    +int x
+    +int y
+    +List<Station> stations
+    +List<Cargo> generatedCargo
+    +List<Cargo> consumedCargo
+}
+
+class Industry {
+    +String name
+    +String type
+    +List<Cargo> generatedCargo
+}
+
+class Station {
+    +String name
+    +String type
+    +int capacity
+    +List<Cargo> supply
+    +List<Cargo> demand
+}
+
+class Cargo {
+    +String type
+    +int quantity
+}
+
+class Train {
+    +String name
+    +String locomotiveType
+    +List<Carriage> carriages
+}
+
+class Carriage {
+    +String cargoType
+    +int capacity
+}
+
+class Route {
+    +List<Station> stations
+    +double length
+    +boolean isElectrified
+}
+
+class Simulation {
+    +startTime
+    +endTime
+}
+
+class Building {
+    +String name
+    +String type
+}
+
+Map "1" --> "0..*" City : contains
+City "1" --> "0..*" Station : has
+Station "1" --> "0..*" Cargo : generates / consumes
+Station "1" --> "0..*" Route : connects
+Route "1" --> "0..*" Station : connects
+Train "1" --> "1" Route : assigned to
+Train "1" --> "0..*" Cargo : transports
+Cargo "1" --> "0..*" Industry : processed by
+Simulation "1" --> "0..*" Train : controls
+Industry "1" --> "0..*" Cargo : produces
+Building "1" --> "1" Station : upgrades
+
+@enduml
